@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 70px;
+            background: #333333;
+            color: white;
+        }
+    </style>
+    <title>Weight Converter</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="display-4 text-center mb-3">Weight Converter</h1>
+                <form>
+                    <div class="form-group">
+                        <input id="lbsInput" placeholder="Enter Value..." type="number"
+                            class="form-control form-control-lg">
+                    </div>
+                </form>
+                <form>
+                    <div class="form-group">
+                        <select name="Weight Type" id="weight-type" class="form-control">
+                            <option value="kg">Kilograms</option>
+                            <option value="grams">Grams</option>
+                            <option value="oz">Ounces</option>
+                            <option value="pounds">Pounds</option>
+                        </select>
+                    </div>
+                </form>
+                <div id="output">
+                    <div class="card card-primary mb-2">
+                        <div class="card-block">
+                            <h4>Grams:</h4>
+                            <div id="gramsOutput"></div>
+                        </div>
+                    </div>
+                    <div class="card card-success mb-2">
+                        <div class="card-block">
+                            <h4>Kilograms:</h4>
+                            <div id="kgOutput"></div>
+                        </div>
+                    </div>
+                    <div class="card card-danger mb-2">
+                        <div class="card-block">
+                            <h4>Ounces:</h4>
+                            <div id="ozOutput"></div>
+                        </div>
+                    </div>
+                    <div class="card card-danger mb-2">
+                        <div class="card-block">
+                            <h4>Pounds:</h4>
+                            <div id="poundsOutput"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('output').style.visibility = 'hidden';
+        document.getElementById('lbsInput').addEventListener('input', function (e) {
+            document.getElementById('output').style.visibility = 'visible';
+            let weightType = document.getElementById('weight-type').value;
+
+            if (weightType === 'kg') {
+                let weight = e.target.value;
+                document.getElementById('gramsOutput').innerHTML = weight * 1000;
+                document.getElementById('poundsOutput').innerHTML = weight * 2.2046;
+                document.getElementById('ozOutput').innerHTML = weight * 35.274;
+                document.getElementById('kgOutput').innerHTML = weight;
+            } else if (weightType === 'grams') {
+                let weight = e.target.value;
+                document.getElementById('poundsOutput').innerHTML = weight / 453.592;
+                document.getElementById('kgOutput').innerHTML = weight / 1000;
+                document.getElementById('ozOutput').innerHTML = weight / 28.35;
+                document.getElementById('gramsOutput').innerHTML = weight;
+            } else if (weightType === 'oz') {
+                let weight = e.target.value;
+                document.getElementById('gramsOutput').innerHTML = weight * 28.35;
+                document.getElementById('kgOutput').innerHTML = weight * 35.274;
+                document.getElementById('poundsOutput').innerHTML = weight / 16;
+                document.getElementById('ozOutput').innerHTML = weight;
+            } else {
+                let weight = e.target.value;
+                document.getElementById('gramsOutput').innerHTML = weight * 28.35;
+                document.getElementById('kgOutput').innerHTML = weight * 35.274;
+                document.getElementById('ozOutput').innerHTML = weight * 16;
+                document.getElementById('poundsOutput').innerHTML = weight;
+            }
+
+            // console.log(document.getElementById('weight-type').value);
+
+
+
+        });
+    </script>
+</body>
+
+</html>
